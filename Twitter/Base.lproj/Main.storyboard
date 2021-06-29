@@ -135,6 +135,9 @@
                                                         <constraint firstAttribute="width" constant="25" id="K23-nP-P8o"/>
                                                     </constraints>
                                                     <state key="normal" image="retweet-icon"/>
+                                                    <connections>
+                                                        <action selector="didTapRetweet:" destination="Ay4-Zo-iYj" eventType="touchUpInside" id="FnY-NB-cvQ"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3,468" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u4e-lW-beS">
                                                     <rect key="frame" x="236.5" y="101" width="45.5" height="20.5"/>
@@ -149,6 +152,9 @@
                                                         <constraint firstAttribute="width" constant="25" id="zMc-Ut-cow"/>
                                                     </constraints>
                                                     <state key="normal" image="favor-icon"/>
+                                                    <connections>
+                                                        <action selector="didTapFavorite:" destination="Ay4-Zo-iYj" eventType="touchUpInside" id="W2G-bL-ZBi"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iwo-t4-r3g">
                                                     <rect key="frame" x="287" y="98.5" width="25" height="25"/>
@@ -194,10 +200,12 @@
                                         <connections>
                                             <outlet property="bodyLabel" destination="D0y-Vk-mQm" id="avk-DP-N1d"/>
                                             <outlet property="dateLabel" destination="Bcn-CJ-0if" id="qxP-Wy-Lgg"/>
+                                            <outlet property="likeButton" destination="hct-Sc-9Zk" id="fdz-uP-O4i"/>
                                             <outlet property="likeLabel" destination="u4e-lW-beS" id="gOv-qg-CN1"/>
                                             <outlet property="nameLabel" destination="1er-sK-Li9" id="spF-65-efa"/>
                                             <outlet property="profileImage" destination="qtS-xg-Idb" id="Ldt-we-jzT"/>
                                             <outlet property="replyLabel" destination="EUX-eL-aIH" id="QwO-Pf-Y2r"/>
+                                            <outlet property="retweetButton" destination="oNp-Vw-2Py" id="cvr-tg-tp1"/>
                                             <outlet property="retweetLabel" destination="uEB-fb-P3b" id="Jdp-vp-4Cw"/>
                                             <outlet property="userLabel" destination="grt-LH-5kV" id="bd6-JA-MLv"/>
                                         </connections>

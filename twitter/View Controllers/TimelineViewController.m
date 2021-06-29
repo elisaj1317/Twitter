@@ -38,6 +38,7 @@
     
 }
 
+
 - (void)fetchTimeline {
     // Get timeline
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
@@ -55,6 +56,8 @@
     }];
 }
 
+
+
 - (IBAction)signOutButton:(id)sender {
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
 
@@ -65,11 +68,6 @@
     [[APIManager shared] logout];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.arrayOfTweets.count;
 }
@@ -77,6 +75,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell" forIndexPath:indexPath];
     Tweet *tweet = self.arrayOfTweets[indexPath.row];
+    cell.tweet = tweet;
     
     cell.nameLabel.text = tweet.user.name;
     cell.userLabel.text = [NSString stringWithFormat:@"@%@", tweet.user.screenName];
@@ -93,18 +92,16 @@
     cell.likeLabel.text = [NSString stringWithFormat:@"%d",tweet.favoriteCount];
     cell.retweetLabel.text = [NSString stringWithFormat:@"%d", tweet.retweetCount];
     
+    if (tweet.favorited) {
+        [cell.likeButton setImage:[UIImage imageNamed:@"favor-icon-red"] forState:UIControlStateNormal];
+    }
+    
+    if (tweet.retweeted) {
+        [cell.retweetButton setImage:[UIImage imageNamed:@"retweet-icon-green"] forState:UIControlStateNormal];
+    }
+    
     
     return cell;
-}
-
-
-
-#pragma mark - Navigation
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    UINavigationController *navigationController = [segue destinationViewController];
-    ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
-        composeController.delegate = self;
 }
 
 
@@ -112,6 +109,14 @@
 - (void)didTweet:(nonnull Tweet *)tweet {
     [self.arrayOfTweets insertObject:tweet atIndex:0];
     [self.tableView reloadData];
+}
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    UINavigationController *navigationController = [segue destinationViewController];
+    ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
+        composeController.delegate = self;
 }
 
 @end
