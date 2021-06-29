@@ -67,11 +67,12 @@
     Tweet *tweet = self.arrayOfTweets[indexPath.row];
     
     cell.nameLabel.text = tweet.user.name;
-    cell.userLabel.text = tweet.user.screenName;
+    cell.userLabel.text = [NSString stringWithFormat:@"@%@", tweet.user.screenName];
     cell.dateLabel.text = [NSString stringWithFormat:@"- %@", tweet.createdAtString];
     cell.bodyLabel.text = tweet.text;
     
     NSString *URLString = tweet.user.profilePicture;
+    URLString = [URLString stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
     NSURL *url = [NSURL URLWithString:URLString];
     NSData *urlData = [NSData dataWithContentsOfURL:url];
     
