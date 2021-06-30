@@ -79,7 +79,7 @@
     
     cell.nameLabel.text = tweet.user.name;
     cell.userLabel.text = [NSString stringWithFormat:@"@%@", tweet.user.screenName];
-    cell.dateLabel.text = [NSString stringWithFormat:@"- %@", tweet.createdAtString];
+    cell.dateLabel.text = [NSString stringWithFormat:@"%@", tweet.createdAtString];
     cell.bodyLabel.text = tweet.text;
     
     NSString *URLString = tweet.user.profilePicture;
