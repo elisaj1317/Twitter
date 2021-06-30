@@ -23,6 +23,24 @@
     // Configure the view for the selected state
 }
 
+- (void)setTweet:(Tweet *)tweet {
+    _tweet = tweet;
+    
+    self.nameLabel.text = tweet.user.name;
+    self.userLabel.text = [NSString stringWithFormat:@"@%@", tweet.user.screenName];
+    self.dateLabel.text = [NSString stringWithFormat:@"%@", tweet.createdAtString];
+    self.bodyLabel.text = tweet.text;
+    
+    NSString *URLString = tweet.user.profilePicture;
+    URLString = [URLString stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
+    NSURL *url = [NSURL URLWithString:URLString];
+    NSData *urlData = [NSData dataWithContentsOfURL:url];
+    
+    self.profileImage.image = [UIImage imageWithData:urlData];
+    
+    [self refreshData];
+}
+
 - (IBAction)didTapFavorite:(id)sender {
     // Unfavoring tweets
     if (self.tweet.favorited) {
@@ -96,10 +114,12 @@
     
 }
 
+
 // Refresh Favorite and Retweet Information
 - (void)refreshData {
-    self.likeLabel.text = [NSString stringWithFormat:@"%d", self.tweet.favoriteCount];
-    self.retweetLabel.text = [NSString stringWithFormat:@"%d", self. tweet.retweetCount];
+    [self.likeButton setTitle:[NSString stringWithFormat:@"%d",self.tweet.favoriteCount] forState:UIControlStateNormal];
+    
+    [self.retweetButton setTitle:[NSString stringWithFormat:@"%d", self.tweet.retweetCount] forState:UIControlStateNormal];
     
     if (self.tweet.favorited) {
         [self.likeButton setImage:[UIImage imageNamed:@"favor-icon-red"] forState:UIControlStateNormal];
