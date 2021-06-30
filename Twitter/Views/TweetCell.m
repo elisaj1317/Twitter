@@ -8,7 +8,7 @@
 
 #import "TweetCell.h"
 #import "APIManager.h"
-
+#import "DateTools.h"
 
 @implementation TweetCell
 
@@ -28,7 +28,7 @@
     
     self.nameLabel.text = tweet.user.name;
     self.userLabel.text = [NSString stringWithFormat:@"@%@", tweet.user.screenName];
-    self.dateLabel.text = [NSString stringWithFormat:@"%@", tweet.createdAtString];
+    self.dateLabel.text = [NSString stringWithFormat:@"%@", tweet.createdAtDate.shortTimeAgoSinceNow];
     self.bodyLabel.text = tweet.text;
     
     NSString *URLString = tweet.user.profilePicture;
