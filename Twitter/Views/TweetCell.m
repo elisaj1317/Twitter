@@ -25,6 +25,7 @@
 
 - (void)setTweet:(Tweet *)tweet {
     _tweet = tweet;
+    self.alpha = 0;
     
     self.nameLabel.text = tweet.user.name;
     self.userLabel.text = [NSString stringWithFormat:@"@%@", tweet.user.screenName];
@@ -44,6 +45,9 @@
     self.profileImage.image = [UIImage imageWithData:urlData];
     
     [self refreshData];
+    [UIView animateWithDuration:.3 animations:^{
+        self.alpha = 1;
+    }];
 }
 
 - (IBAction)didTapFavorite:(id)sender {

@@ -7,7 +7,8 @@
 //
 
 #import "DetailsViewController.h"
-#import "DateTools/DateTools.h"
+#import "DateTools.h"
+#import "APIManager.h"
 
 @interface DetailsViewController ()
 
@@ -48,21 +49,112 @@
     self.profileImage.image = [UIImage imageWithData:urlData];
     
     // set date
-    self.dateLabel.text = [self.tweet.createdAtDate formattedDateWithFormat:@"h:mm a - M/dd/yy"];
+    self.dateLabel.text = [self.tweet.createdAtDate formattedDateWithFormat:@"h:mm a - M/d/yy"];
     
     // refresh tweet and favorite data
     [self refreshData];
     
 }
 
+- (IBAction)didTapFavorite:(id)sender {
+    // Unfavoring tweets
+    if (self.tweet.favorited) {
+        self.tweet.favorited = NO;
+        self.tweet.favoriteCount -= 1;
+        
+        [self refreshData];
+        
+        [[APIManager shared] unfavorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
+             if(error){
+                  NSLog(@"Error unfavoriting tweet: %@", error.localizedDescription);
+             }
+             else{
+                 NSLog(@"Successfully unfavorited the following Tweet: %@", tweet.text);
+             }
+         }];
+        
+    }
+    // Favoring tweets
+    else {
+        self.tweet.favorited = YES;
+        self.tweet.favoriteCount += 1;
+        
+        [self refreshData];
+        
+        [[APIManager shared] favorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
+             if(error){
+                  NSLog(@"Error favoriting tweet: %@", error.localizedDescription);
+             }
+             else{
+                 NSLog(@"Successfully favorited the following Tweet: %@", tweet.text);
+             }
+         }];
+    }
+}
+
+- (IBAction)didTapRetweet:(id)sender {
+    // Unretweeting tweets
+    if (self.tweet.retweeted) {
+        self.tweet.retweeted = NO;
+        self.tweet.retweetCount -= 1;
+        
+        [self refreshData];
+        
+        [[APIManager shared] unretweet:self.tweet completion:^(Tweet *tweet, NSError *error) {
+             if(error){
+                  NSLog(@"Error unretweeting tweet: %@", error.localizedDescription);
+             }
+             else{
+                 NSLog(@"Successfully unretweeting the following Tweet: %@", tweet.text);
+             }
+         }];
+        
+    }
+    // Retweeting tweets
+    else {
+        self.tweet.retweeted = YES;
+        self.tweet.retweetCount += 1;
+        
+        [self refreshData];
+        
+        [[APIManager shared] retweet:self.tweet completion:^(Tweet *tweet, NSError *error) {
+             if(error){
+                  NSLog(@"Error retweeting tweet: %@", error.localizedDescription);
+             }
+             else{
+                 NSLog(@"Successfully retweeting the following Tweet: %@", tweet.text);
+             }
+         }];
+    }
+    
+}
+
 - (void)refreshData {
-//    [self.likeButton setTitle:[NSString stringWithFormat:@"%d",self.tweet.favoriteCount] forState:UIControlStateNormal];
-//
-//    [self.retweetButton setTitle:[NSString stringWithFormat:@"%d", self.tweet.retweetCount] forState:UIControlStateNormal];
+    // set like and retweet text with num bolded
+    UIFont *boldFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:17];
+    UIFont *lightFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
+    NSMutableAttributedString *likeCount = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d", self.tweet.favoriteCount]];
+    [likeCount addAttribute:NSFontAttributeName value:boldFont range:NSMakeRange(0,likeCount.length)];
     
-    self.likeLabel.text = [NSString stringWithFormat:@"%d Likes", self.tweet.favoriteCount];
-    self.retweetLabel.text = [NSString stringWithFormat:@"%d Retweets", self.tweet.retweetCount];
+    NSMutableAttributedString *likeText = [[NSMutableAttributedString alloc] initWithString:@" Likes"];
+    [likeText addAttribute:NSFontAttributeName value:lightFont range:NSMakeRange(0,likeText.length)];
     
+    [likeCount appendAttributedString:likeText];
+    self.likeLabel.attributedText = likeCount;
+    
+    
+    
+    NSMutableAttributedString *retweetCount = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d", self.tweet.retweetCount]];
+    [retweetCount addAttribute:NSFontAttributeName value:boldFont range:NSMakeRange(0,retweetCount.length)];
+    
+    NSMutableAttributedString *retweetText = [[NSMutableAttributedString alloc] initWithString:@" Retweets"];
+    [retweetText addAttribute:NSFontAttributeName value:lightFont range:NSMakeRange(0,retweetText.length)];
+    
+    [retweetCount appendAttributedString:retweetText];
+    self.retweetLabel.attributedText = retweetCount;
+    
+    
+    // set button image
     if (self.tweet.favorited) {
         [self.likeButton setImage:[UIImage imageNamed:@"favor-icon-red"] forState:UIControlStateNormal];
     }
