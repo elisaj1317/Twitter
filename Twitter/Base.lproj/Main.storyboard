@@ -393,20 +393,25 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qg6-ho-0bh">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                                 <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="y6a-TY-sEn">
+                                        <rect key="frame" x="20" y="76" width="56" height="56"/>
+                                        <color key="backgroundColor" red="0.86274509799999999" green="0.98431372549999996" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="56" id="Z6I-Zh-xmY"/>
+                                            <constraint firstAttribute="height" constant="56" id="dpE-6T-ZFN"/>
+                                        </constraints>
+                                    </imageView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Xz6-9G-xc9">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <rect key="frame" x="86" y="76" width="274" height="215.5"/>
                                         <color key="textColor" systemColor="labelColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="Xz6-9G-xc9" firstAttribute="top" secondItem="Qg6-ho-0bh" secondAttribute="top" id="6xM-EA-pts"/>
-                                    <constraint firstAttribute="trailing" secondItem="Xz6-9G-xc9" secondAttribute="trailing" id="HSn-AT-hdZ"/>
-                                    <constraint firstAttribute="bottom" secondItem="Xz6-9G-xc9" secondAttribute="bottom" id="Wtg-Kq-fqW"/>
-                                    <constraint firstItem="Xz6-9G-xc9" firstAttribute="leading" secondItem="Qg6-ho-0bh" secondAttribute="leading" id="xH0-OH-Koj"/>
+                                    <constraint firstItem="Xz6-9G-xc9" firstAttribute="leading" secondItem="y6a-TY-sEn" secondAttribute="trailing" constant="10" id="EZ8-w4-UNl"/>
+                                    <constraint firstItem="Xz6-9G-xc9" firstAttribute="height" secondItem="Qg6-ho-0bh" secondAttribute="height" multiplier="1:3" id="UZQ-Hm-gi2"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -414,9 +419,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Gdp-UG-QpK" firstAttribute="bottom" secondItem="Qg6-ho-0bh" secondAttribute="bottom" id="3kI-Vs-WA7"/>
+                            <constraint firstItem="y6a-TY-sEn" firstAttribute="leading" secondItem="Gdp-UG-QpK" secondAttribute="leading" constant="20" id="EGh-b5-ROd"/>
                             <constraint firstItem="Qg6-ho-0bh" firstAttribute="top" secondItem="Uxx-GV-fJO" secondAttribute="top" id="IyZ-qD-fbW"/>
                             <constraint firstAttribute="trailing" secondItem="Qg6-ho-0bh" secondAttribute="trailing" id="JDx-Ea-lud"/>
+                            <constraint firstItem="Gdp-UG-QpK" firstAttribute="top" secondItem="Xz6-9G-xc9" secondAttribute="top" constant="-20" id="RoY-e0-TDg"/>
                             <constraint firstItem="Qg6-ho-0bh" firstAttribute="leading" secondItem="Uxx-GV-fJO" secondAttribute="leading" id="Vwl-Z2-kdM"/>
+                            <constraint firstItem="Gdp-UG-QpK" firstAttribute="trailing" secondItem="Xz6-9G-xc9" secondAttribute="trailing" constant="15" id="hKW-b6-JcK"/>
+                            <constraint firstItem="Gdp-UG-QpK" firstAttribute="top" secondItem="y6a-TY-sEn" secondAttribute="top" constant="-20" id="uMD-Ca-ca5"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="YAI-Zq-Vbk">
@@ -432,6 +441,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="profileImage" destination="y6a-TY-sEn" id="MGf-8I-fzv"/>
                         <outlet property="textView" destination="Xz6-9G-xc9" id="h5K-za-brv"/>
                     </connections>
                 </viewController>

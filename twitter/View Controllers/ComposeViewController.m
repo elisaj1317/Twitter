@@ -8,9 +8,11 @@
 
 #import "ComposeViewController.h"
 #import "APIManager.h"
+#import <UITextView+Placeholder/UITextView+Placeholder.h>
 
 @interface ComposeViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 
 @end
 
@@ -19,6 +21,39 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.textView.placeholder = @"What's happening?";
+    self.textView.placeholderColor = [UIColor lightGrayColor];
+    self.textView.layer.borderWidth = 1;
+    self.textView.layer.borderColor = [UIColor colorWithRed:29.0/255.0 green:161.0/255.0 blue:242.0/255.0 alpha:1.0].CGColor;
+    
+    [self fetchUser];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [self.textView becomeFirstResponder];
+}
+
+- (void) fetchUser {
+    [[APIManager shared] getUserProvileWithCompletion:^(User *user, NSError *error) {
+        if (user) {
+            NSString *URLString = user.profilePicture;
+            URLString = [URLString stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
+            NSURL *url = [NSURL URLWithString:URLString];
+            NSData *urlData = [NSData dataWithContentsOfURL:url];
+            
+            self.profileImage.layer.masksToBounds = false;
+            self.profileImage.layer.cornerRadius = 28;
+            self.profileImage.clipsToBounds = true;
+
+            
+            self.profileImage.image = [UIImage imageWithData:urlData];
+            
+        } else {
+            NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
+        }
+        
+    }];
 }
 
 - (IBAction)closeButton:(id)sender {
