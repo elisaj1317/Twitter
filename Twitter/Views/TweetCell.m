@@ -36,6 +36,11 @@
     NSURL *url = [NSURL URLWithString:URLString];
     NSData *urlData = [NSData dataWithContentsOfURL:url];
     
+    self.profileImage.layer.masksToBounds = false;
+    self.profileImage.layer.cornerRadius = 28;
+    self.profileImage.clipsToBounds = true;
+
+    
     self.profileImage.image = [UIImage imageWithData:urlData];
     
     [self refreshData];

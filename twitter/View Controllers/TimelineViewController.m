@@ -13,6 +13,7 @@
 #import "TweetCell.h"
 #import "Tweet.h"
 #import "ComposeViewController.h"
+#import "DetailsViewController.h"
 
 @interface TimelineViewController () <ComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) NSMutableArray *arrayOfTweets;
@@ -89,9 +90,24 @@
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    UINavigationController *navigationController = [segue destinationViewController];
-    ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
-        composeController.delegate = self;
+    
+    if ([segue.identifier isEqual: @"composeSegue"]){
+        UINavigationController *navigationController = [segue destinationViewController];
+        ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
+            composeController.delegate = self;
+    }
+    
+    else if ([segue.identifier isEqual:@"detailsSegue"]) {
+        // Passes selected Tweet into DetailsViewController
+        UITableViewCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+        Tweet *tweet = self.arrayOfTweets[indexPath.row];
+        
+        DetailsViewController *detailsViewController = [segue destinationViewController];
+        
+        detailsViewController.tweet = tweet;
+    }
+    
 }
 
 @end
