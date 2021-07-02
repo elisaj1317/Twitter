@@ -3,4 +3,70 @@
    uuid = "7E00155D-12D5-4401-A4C5-45ACCB899505"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C6BA80D1-598C-4C0B-96DC-DF5112018DBA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "twitter/Views/TweetCell.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "-setTweet:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6FEA8BE0-39A6-4EFF-B6BE-538B4CD5CC0A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "twitter/View Controllers/ComposeViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "-didTapPost:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6FEA8BE0-39A6-4EFF-B6BE-538B4CD5CC0A - 391366229bd20972"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ComposeViewController didTapPost:]"
+                  moduleName = "twitter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/elisaj/Desktop/Projects/Twitter/twitter/View%20Controllers/ComposeViewController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "145">
+               </Location>
+               <Location
+                  uuid = "6FEA8BE0-39A6-4EFF-B6BE-538B4CD5CC0A - 9d4715e45622fce6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__36-[ComposeViewController didTapPost:]_block_invoke"
+                  moduleName = "twitter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/elisaj/Desktop/Projects/Twitter/twitter/View%20Controllers/ComposeViewController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "75">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

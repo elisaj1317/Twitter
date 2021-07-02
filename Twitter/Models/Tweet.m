@@ -43,6 +43,7 @@
          NSDate *date = [formatter dateFromString:createdAtOriginalString];
          
          self.createdAtDate = date;
+         
      }
      return self;
  }

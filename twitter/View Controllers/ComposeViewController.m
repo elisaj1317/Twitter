@@ -62,6 +62,7 @@
 
 
 - (IBAction)didTapPost:(id)sender {
+    NSLog(@"%@", self.textView.text);
     [[APIManager shared]postStatusWithText:self.textView.text completion:^(Tweet *tweet, NSError *error) {
         if(error){
             NSLog(@"Error composing Tweet: %@", error.localizedDescription);
