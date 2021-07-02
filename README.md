@@ -42,9 +42,9 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [ ] User can see cells animate as they load in the Home Timeline
-- [ ] User has placeholder text before they start composing their tweet
-- [ ] User's keyboard appears automatically when they choose to compose a tweet
+- [X] User can see cells animate as they load in the Home Timeline
+- [X] User has placeholder text before they start composing their tweet
+- [X] User's keyboard appears automatically when they choose to compose a tweet
 
 ## Video Walkthrough
 
