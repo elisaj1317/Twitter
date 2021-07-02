@@ -62,6 +62,20 @@ static NSString * const baseURLString = @"https://api.twitter.com";
     }];
 }
 
+- (void)getUserTimelineWithCompletion:(void(^)(NSArray *tweets, NSError *error))completion withScreenName:(NSString *)screenName {
+    NSDictionary *parameters = @{@"tweet_mode":@"extended"};
+    NSString *urlString = [NSString stringWithFormat:@"1.1/statuses/user_timeline.json?screen_name=%@", screenName];
+    [self GET:urlString
+       parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSArray *  _Nullable tweetDictionaries) {
+           // Success
+           NSMutableArray *tweets  = [Tweet tweetsWithArray:tweetDictionaries];
+           completion(tweets, nil);
+       } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+           // There was a problem
+           completion(nil, error);
+    }];
+}
+
 - (void)getUserProvileWithCompletion:(void(^)(User *user, NSError *error))completion {
     [self GET:@"1.1/account/verify_credentials.json"
        parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *  _Nullable userDictionary) {
