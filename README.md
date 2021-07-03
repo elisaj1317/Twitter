@@ -53,6 +53,7 @@ Here's a walkthrough of implemented user stories:
 <img src='Twitter1.gif' title='Video Walkthrough' width='300' alt='Home Timeline' />
 <img src='Twitter2.gif' title='Video Walkthrough' width='300' alt='Composing Tweets and Profile Page' />
 <img src='Twitter3.gif' title='Video Walkthrough' width='300' alt='AutoLayout' />
+<img src='Twitter4.gif' title='Video Walkthrough' width='300' alt='Sign in' />
 
 GIF created with [Kap](https://getkap.co/).
 
